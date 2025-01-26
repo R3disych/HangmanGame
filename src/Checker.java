@@ -29,7 +29,10 @@ public class Checker {
                 System.out.printf(REMAINING_ATTEMPS, Game.outNumsOfTry);
             } else if (Game.numsOfTry == 3) {
                 System.out.println(DEAD);
+                System.out.println(Hangman.DEAD_HANGMAN);
                 Game.stopGame();
+                Game.outNumsOfTry = 3;
+                Game.numsOfTry = 0;
             }
         }
     }
