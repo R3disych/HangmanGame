@@ -6,17 +6,18 @@ public class Checker {
     private static final String REMAINING_ATTEMPS = "\nНе угадали! Количество оставшихся попыток: %s \n";
     private static final String TRUE_MESSAGE = "Вы угадали букву!";
 
-    public static void inputter() {
+    public static String inputter() {
         Scanner sc = new Scanner(System.in);
         if(sc.hasNextLine()) {
             letter = (sc.nextLine()).toLowerCase();
         } else { //пока не работает, считывает введенную цифру как String
             System.out.println("Вы ввели не букву, попробуйте еще раз");
         }
+        return letter;
     }
 
     public static void check() {
-        if ((Gallows.getName1()).contains(letter)) {
+        if ((Gallows.getHiddenWord()).contains(letter)) {
             System.out.println(TRUE_MESSAGE);
             Gallows.plusGuessedLetters();
             if (Gallows.checkWin()) {
@@ -31,8 +32,6 @@ public class Checker {
                 System.out.println(DEAD);
                 System.out.println(Hangman.DEAD_HANGMAN);
                 Game.stopGame();
-                Game.outNumsOfTry = 3;
-                Game.numsOfTry = 0;
             }
         }
     }

@@ -4,20 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Gallows {
-    private final List<String> name = Arrays.asList("А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л",
+    private static final List<String> name = Arrays.asList("А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л",
             "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я");
     private static String hiddenWord;
 
-    static {
-        try {
-            hiddenWord = Randomizer.getRandomWord();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    private static int numsOfLetters = hiddenWord.length();
+    private static int numsOfLetters;
     private static int guessedLetters;
+
 
     public void printGallowsField() {
         switch(Game.outNumsOfTry) {
@@ -34,7 +28,17 @@ public class Gallows {
         }
     }
 
-    public static String getName1() {
+    public void setHiddenWord() {
+        try {
+            hiddenWord = Randomizer.getRandomWord();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        numsOfLetters = hiddenWord.length();
+        guessedLetters = 0;
+    }
+
+    public static String getHiddenWord() {
         return hiddenWord;
     }
 
